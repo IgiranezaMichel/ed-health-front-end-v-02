@@ -1,0 +1,5 @@
+export enum LocationType{
+PROVINCE='PROVINCE',
+DISTRICT='DISTRICT',
+SECTOR='SECTOR'
+}
