@@ -1,0 +1,16 @@
+import { MONTH } from "../enum/month";
+
+export const month:MONTH[]=[
+    MONTH.JANUARY,
+    MONTH.FEBRUARY,
+    MONTH.MARCH,
+    MONTH.APRIL,
+    MONTH.MAY,
+    MONTH.JUNE,
+    MONTH.JULY,
+    MONTH.AUGUST,
+    MONTH.SEPTEMBER,
+    MONTH.OCTOBER,
+    MONTH.NOVEMBER,
+    MONTH.DECEMBER
+]
