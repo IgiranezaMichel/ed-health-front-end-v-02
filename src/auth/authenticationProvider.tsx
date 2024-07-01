@@ -20,7 +20,7 @@ export const AuthenticationProvider=(prop:{children:ReactNode})=>{
                 setUserData(data.data);
                 console.log(data);
                 if(data.request.responseURL=='http://localhost:8080/login'){
-                console.log('invalid credentials');
+                navigation("/login",{state:{error:"Invalid username or password"}});
                 }else{
                     if(data.data.role==Role.ROLE_ADMIN){
                         navigation("/admin")
