@@ -2,20 +2,24 @@ import { Card } from "@mui/material"
 import { Navigation } from "../../component/navigation"
 import { StudentMenu } from "../../utils/studentMenu"
 import { Person, Phone, School, Wc } from "@mui/icons-material"
+import { useAuthenticationContext } from "../../auth/authenticationProvider"
 
 export const StudentIndex=()=>{
+    const {current}=useAuthenticationContext();
+    console.log(current);
+    
     return <Navigation navItems={StudentMenu}>
         <section className="row  g-2 justify-content-between">
             <Card elevation={0} className="border-0 border-start card border-3 border-info  col-md-4">
                <div className="row">
                <div className="col-md-3 rounded-0 d-flex justify-content-center align-items-center ">
-                <img src="vite.svg" alt="vite.svg" className="card-img"/>
+                <img src={current.photo} alt={current.name+'.jpg'} className="card-img"/>
                 </div>
                 <div className="col-md-9  ps-2">
                     <ul>
-                        <li className="nav-link mb-2 mb-3"><Person className="rounded-circle p-1 border"/> Amazina Amazina</li>
-                        <li className="nav-link mb-2 mb-3"><Wc className="rounded-circle p-1 border"/></li>
-                        <li className="nav-link mb-2 mb-3"><Phone className="rounded-circle p-1 border"/></li>
+                        <li className="nav-link mb-2 mb-3"><Person className="rounded-circle p-1 border"/>{current.name}</li>
+                        <li className="nav-link mb-2 mb-3"><Wc className="rounded-circle p-1 border"/>{current.gender}</li>
+                        <li className="nav-link mb-2 mb-3"><Phone className="rounded-circle p-1 border"/>{current.phoneNumber}</li>
                     </ul>
                 </div>
                </div>

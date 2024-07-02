@@ -20,7 +20,7 @@ export const DisplayStudent=()=>{
   )
     return<>
     <section className="d-flex justify-content-between align-items-center">
-    <div className="fw-bolder fs-5 mt-3 mb-3">Student</div>
+    <div className="fw-bolder fs-5  mb-3">Student</div>
     <div className="fw-bolder fs-5 mt-3 mb-3">
       <TextField onChange={(e)=>setPage({...page,search:e.target.value})} type="search" sx={{'& .MuiInputBase-root':{height:40}}}
       placeholder="Search ..." 
@@ -54,7 +54,7 @@ export const DisplayStudent=()=>{
                            <Avatar sx={{width:30,height:30}} src={data.profilePicture}/> {data.name}
                         </TableCell>
                         <TableCell >
-                           {data.gender=='Male'?<div className="fw-bolder"><Man/> Male</div>:<div className="fw-bolder"><Woman/> woman</div>}
+                           {data.gender=='Male'?<div className="fw-bolder"><Man/> Male</div>:<div className="fw-bolder"><Woman/> woman {data.gender}</div>}
                         </TableCell>
                         <TableCell >
                             {data.dateOfBirth}
@@ -88,6 +88,7 @@ export const DisplayStudent=()=>{
           </TableBody>
         </Table>
       </TableContainer>
+
       {/* student detail */}
       <Dialog open={newStudent} maxWidth='xs' PaperProps={{className:'col-12'}}>
       <CreateStudent>

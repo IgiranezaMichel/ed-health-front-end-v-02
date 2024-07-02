@@ -19,15 +19,18 @@ export const CreateStudent=(prop:{children:ReactNode})=>{
     const [facultyList,setFacultList]=useState([]);
     const [departmentList,setDepartmentList]=useState([]);
     const [isLoadingDepartment,setIsLoadingDepartment]=useState(true);
-    const user=JSON.parse(String(localStorage.getItem('user')));
     const [isLoading,setIsLoading]=useState(true);
-    const facultyDao=new FacultyDao().getAllFacultyFromSchool((user!=null&&Object.keys(user).length!=0)?(user.referenceId):'');
+    const facultyDao=new FacultyDao().getAllFacultyFromSchool();
     useEffect(
       ()=>{
         facultyDao.then(data=>{setFacultList(data.data);setIsLoading(false)});
         console.log(facultyList);
         
       },[]
+  )
+  useEffect(
+    ()=>{console.log(student);
+    },[student]
   )
     const [activeStep,setActiveStep]=useState(0);
     const fetchDepartmentFromFaculty=async(facultyId:string)=>{
@@ -88,7 +91,7 @@ export const CreateStudent=(prop:{children:ReactNode})=>{
             </div>
         </Box>
         <TextField type="email" required  onChange={(e)=>setStudent({...student,email:e.target.value})} className="mb-3" label='Email' fullWidth/>
-        <TextField type="tel" required value={student.phoneNumber} onChange={(e)=>setStudent({...student,phoneNumber:e.target.value})} className="mb-3" label='Phone number' fullWidth/>
+        <TextField type="number" required value={student.phoneNumber} onChange={(e)=>setStudent({...student,phoneNumber:e.target.value})} className="mb-3" label='Phone number' fullWidth/>
 
         <TextField InputProps={{startAdornment:<>profile</>}} type="file" required onChange={handleProfile} className="mb-3" label='Profile picture' fullWidth/>
         

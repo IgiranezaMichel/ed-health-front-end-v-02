@@ -1,19 +1,7 @@
 import { Chip, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { useEffect, useState } from "react";
-import { FacultyDao } from "../../../../../controller/faculty";
-
+import { useFacultyContext } from "../../../../../context/faculty";
 export const DisplayFaculty=()=>{
-  const [facultyList,setFacultList]=useState([]);
-  const user=JSON.parse(String(localStorage.getItem('user')));
-  const [isLoading,setIsLoading]=useState(true);
-  const facultyDao=new FacultyDao().getAllFacultyFromSchool((user!=null&&Object.keys(user).length!=0)?(user.referenceId):'');
-  useEffect(
-    ()=>{
-      facultyDao.then(data=>{setFacultList(data.data);setIsLoading(false)});
-      console.log(facultyList);
-      
-    },[]
-)
+const {data}=useFacultyContext();
     return<>
      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
@@ -31,7 +19,7 @@ export const DisplayFaculty=()=>{
                 </TableCell>
             </TableRow>
           </TableHead>
-          {!isLoading&&facultyList.length!=0&&facultyList.map((data:any,index:number)=><TableBody key={index}>
+          {data.length!=0&&data.map((data:any,index:number)=><TableBody key={index}>
                   <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell>
                            {index+1}
@@ -44,7 +32,7 @@ export const DisplayFaculty=()=>{
                         </TableCell>
                   </TableRow>
           </TableBody>)}
-          {!isLoading&&facultyList.length==0&&
+          {data.length==0&&
             <TableRow>
             <TableCell colSpan={4} className="text-center"><Chip label='No data found'/></TableCell>
             </TableRow>

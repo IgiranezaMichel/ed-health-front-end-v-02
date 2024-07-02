@@ -4,11 +4,12 @@ import { AuthenticationDao } from "../../controller/authenticationDao"
 import { useState } from "react"
 import { ILogin } from "../../interface/login"
 import { Role } from "../../enum/Role"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 export const Login=()=>{
     const [loginData,setLoginData]=useState<ILogin>({username:'',password:''});
     const navigation=useNavigate();
+    const location=useLocation();
     const loginHandler=async(e:any)=>{
         e.preventDefault();
         await new AuthenticationDao().login(loginData).then(
@@ -42,6 +43,7 @@ export const Login=()=>{
         </div>
         <TextField onChange={e=>setLoginData({...loginData,username:e.target.value})} value={loginData.username} className="mb-3" InputProps={{startAdornment:<LockPerson/>}} fullWidth/>
         <TextField type="password" onChange={e=>setLoginData({...loginData,password:e.target.value})} value={loginData.password} className="mb-3" InputProps={{startAdornment:<Visibility/>}} fullWidth/>
+             
         <div className="modal-footer">
             <Button type="submit">submit</Button>
         </div>
