@@ -9,7 +9,7 @@ export const LicenceDisplaySchool=(prop:{children:ReactNode})=>{
     const [licenceId,setLicenceId]=useState('');
     return <>
     <div>
-          <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 400 }}>
         <Table stickyHeader aria-label="sticky table" className="table-info">
           <TableHead className="bg-info">
