@@ -1,6 +1,5 @@
 import { Email, Phone, VisibilityOff, Wc } from "@mui/icons-material"
 import { Avatar, Button, Card, TextField } from "@mui/material"
-import { useAccountHolderContext } from "../context/accountHolder"
 import { useAuthenticationContext } from "../auth/authenticationProvider";
 
 export const Setting=()=>{
