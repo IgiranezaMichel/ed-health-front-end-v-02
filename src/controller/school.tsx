@@ -4,8 +4,8 @@ import { IPage } from "../interface/page";
 
 const API='http://localhost:8080/api/school';
 export class SchoolDao{
-    public saveSchool=async(school:ISchool,accountHolderEmail:string)=>{
-        return await axios.post(API+'/create/'+accountHolderEmail,school,{withCredentials:true});
+    public saveSchool=async(school:ISchool)=>{
+        return await axios.post(API+'/create',school,{withCredentials:true});
     }
     public updateSchool=async(school:ISchool)=>{
         return await axios.post(API+'/update',school,{withCredentials:true});
