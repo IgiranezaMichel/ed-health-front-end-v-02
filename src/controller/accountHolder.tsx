@@ -20,7 +20,7 @@ export class AccountHolderDao{
         return await axios.get(API+'/'+userId,{withCredentials:true});
      }
      public findAccountHolderByEmail=async(email:string)=>{
-        return await axios.get(API+'/find?email='+email);
+        return await axios.get(API+'/find?email='+email,{withCredentials:true});
      }
      public changePassword=async(old:string,newPassword:string)=>{
         return await axios.get(API+'/changePassword/'+old+"/"+newPassword,{withCredentials:true});
