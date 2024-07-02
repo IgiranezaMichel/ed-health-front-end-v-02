@@ -1,18 +1,7 @@
 import { Chip, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { useEffect, useState } from "react";
-import { DepartmentDao } from "../../../../../controller/department";
+import { useDepartmentContext } from "../../../../../context/department";
 export const DisplayDepartment=()=>{
-  const [departmentList,setDepartmentList]=useState([]);
-  const user=JSON.parse(String(localStorage.getItem('user')));
-  const [isLoading,setIsLoading]=useState(true);
-  const departmentDao=new DepartmentDao().getSchoolDepartments((user!=null&&Object.keys(user).length!=0)?(user.referenceId):'');
-  useEffect(
-    ()=>{
-      departmentDao.then(data=>{setDepartmentList(data.data);setIsLoading(false)});
-      console.log(departmentList);
-      
-    },[]
-)
+ const {data}=useDepartmentContext();
     return<>
      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
@@ -30,7 +19,7 @@ export const DisplayDepartment=()=>{
                 </TableCell>
             </TableRow>
           </TableHead>
-         {!isLoading&&departmentList.length!=0&&departmentList.map ((data:any,index:number)=><TableBody key={index}>
+         {data!=undefined&&data.length!=0&&data.map ((data:any,index:number)=><TableBody key={index}>
                   <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell>
                            {index+1}  
@@ -43,7 +32,7 @@ export const DisplayDepartment=()=>{
                         </TableCell>
                   </TableRow>
           </TableBody>)}
-          {isLoading&&departmentList.length==0&&<TableRow>
+          {data!=undefined&&data.length==0&&<TableRow>
                 <TableCell colSpan={4} className="text-center"><Chip label='No data found'/></TableCell>
                 </TableRow>}
         </Table>
