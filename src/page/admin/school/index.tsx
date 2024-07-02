@@ -8,6 +8,7 @@ import { AdminDisplaySchool } from "../../sharedcomponent/ncnmandadmin/school/di
 import { SchoolProvider } from "../../../context/school"
 import { AccountHolderProvider } from "../../../context/accountHolder"
 import { IPage } from "../../../interface/page"
+import { SchoolAdminProvider } from "../../../context/schoolAdmin"
 export const AdminSchool=()=>{
     const [addNewHospital,setAddNewHospital]=useState(false);
     const [page,setPage]=useState<IPage>({pageNumber:0,pageSize:10,search:'',sort:'id'});
@@ -38,13 +39,13 @@ export const AdminSchool=()=>{
            </div>
         </div>
         <Dialog open={addNewHospital} maxWidth='xs' PaperProps={{className:'col-12 rounded-4'}}>
-        <AccountHolderProvider>
-        <AdminCreateSchool>
+        <SchoolAdminProvider>
+        <AdminCreateSchool> 
             <div className="d-flex justify-content-between p-2 bg-success sticky-top text-white">
                 <div><LocalHospitalOutlined/> Create New School</div> <div><Close onClick={()=>setAddNewHospital(false)}/></div>
             </div>
         </AdminCreateSchool>
-        </AccountHolderProvider>
+        </SchoolAdminProvider>
         </Dialog>
        </SchoolProvider>
     </Navigation>
