@@ -3,10 +3,11 @@ import { DisplayDepartment } from "./display"
 import { AddCircle, Close } from "@mui/icons-material"
 import { useState } from "react"
 import { CreateDepartment } from "./create"
+import { DepartmentProvider } from "../../../../../context/department"
 
 export const SchoolDepartmentIndex=()=>{
     const [newSchool,setNewSchool]=useState(false);
-    return <>
+    return <DepartmentProvider>
     <div className="d-flex justify-content-between align-items-center">
     <div className="fw-bolder">Department table</div>
         <Button variant="outlined" onClick={()=>setNewSchool(true)}> <AddCircle/> create</Button>
@@ -20,5 +21,5 @@ export const SchoolDepartmentIndex=()=>{
             </Box>
         </CreateDepartment>
     </Dialog>
-    </>
+    </DepartmentProvider>
 }
