@@ -18,7 +18,6 @@ export const AuthenticationProvider=(prop:{children:ReactNode})=>{
         ()=>{
              new AuthenticationDao().checkSession().then(data=>{
                 setUserData(data.data);
-                console.log(data);
                 if(data.request.responseURL=='http://localhost:8080/login'){
                 navigation("/login",{state:{error:"Invalid username or password"}});
                 }else{
