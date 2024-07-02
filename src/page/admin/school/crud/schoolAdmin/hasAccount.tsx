@@ -19,7 +19,6 @@ export const SchoolAdminHasAccount=()=>{
      } catch (error) {        
        console.log(error);
      }
-    
     }
     return <div className="p-3">
     <span>Email</span>
