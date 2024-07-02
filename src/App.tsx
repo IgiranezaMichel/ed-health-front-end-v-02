@@ -37,7 +37,7 @@ export default function App() {
           <Route path="/ncnm" element={<AuthenticationProvider><NcnmIndex/></AuthenticationProvider>} />
           <Route path="/ncnm/licence" element={<AuthenticationProvider><Licence/></AuthenticationProvider>} />
           <Route path="/ncnm/hospital" element={<AuthenticationProvider><NcnmHospital/></AuthenticationProvider>} />
-          <Route path="/ncnm/school" element={<NcnmSchool/>} />
+          <Route path="/ncnm/school" element={<AuthenticationProvider><NcnmSchool/></AuthenticationProvider>} />
 
           <Route path="/hospital" element={<AuthenticationProvider><HospitalAdmin/></AuthenticationProvider>} />
           <Route path="/hospital/job" element={<AuthenticationProvider><HospitalJobs/></AuthenticationProvider>} />
