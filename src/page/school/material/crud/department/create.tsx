@@ -4,22 +4,23 @@ import { IDepartment } from "../../../../../interface/entity/department"
 import { DepartmentDao } from "../../../../../controller/department";
 import { ToastContainer, toast } from "react-toastify";
 import { FacultyDao } from "../../../../../controller/faculty";
+import { useDepartmentContext } from "../../../../../context/department";
 
 export const CreateDepartment=(prop:{children:ReactNode})=>{
     const [department,setDepartment]=useState<IDepartment>({name:'',facultyId:''});
-    const user=JSON.parse(String(localStorage.getItem('user')));
     const [faculty,setFaculty]=useState([]);
     const [isLoading,setIsLoading]=useState(true);
-    const findFaculty=new FacultyDao().getAllFacultyFromSchool((user!=null&&Object.keys(user).length!=0)?(user.referenceId):'');
+    const findFaculty=new FacultyDao().getAllFacultyFromSchool();
     useEffect(
         ()=>{
             findFaculty.then(data=>{setFaculty(data.data);setIsLoading(false)})
         },[]
     )
+    const {refresh}=useDepartmentContext();
     const saveDepartment=async(e:any)=>{
         e.preventDefault();
       const responseData=  new DepartmentDao ().saveDepartment(department);
-      responseData.then(data=>data.status==201?toast.success(data.data):toast.error(data.data))
+      responseData.then(data=>{data.status==201?toast.success(data.data):toast.error(data.data);refresh()})
       .catch(err=>toast.error(err.message))
     }
     return<>
